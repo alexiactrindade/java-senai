@@ -77,44 +77,94 @@ public class atividadeListas {
         ArrayList<String> nomes = new ArrayList<>();
 
         //Recebe pelo menos 5 nomes do usuario, até ele decidir parar.
-        while(true){
+        while (true) {
             String entrada = JOptionPane.showInputDialog("Informe um nome: ");
-            if (entrada == null){
-                if(nomes.size()>=5){
+            if (entrada == null) {
+                if (nomes.size() >= 5) {
                     break;
-                }
-                else{
+                } else {
                     int faltam = 5 - nomes.size();
-                    JOptionPane.showMessageDialog(null, "Ainda faltam "+faltam+" nomes.");
+                    JOptionPane.showMessageDialog(null, "Ainda faltam " + faltam + " nomes.");
                 }
-            }
-            else {
+            } else {
                 nomes.add(entrada);
             }
 
         }
         JOptionPane.showMessageDialog(null, "A lista tem " + nomes.size() + " nomes.");
         JOptionPane.showMessageDialog(null,
-                "Primeiro nome: " + nomes.getFirst()+" \n" +
+                "Primeiro nome: " + nomes.getFirst() + " \n" +
                         "Ultimo nome: " + nomes.getLast());
 
         String novoNome = JOptionPane.showInputDialog("Informe mais um nome para substituir " + nomes.get(2) + ": ");
 
-        if(nomes.size()<=3){
+        if (nomes.size() <= 3) {
             nomes.set(2, novoNome);
         }
 
         String nomeEliminar = JOptionPane.showInputDialog("Informe um nome para eliminar: ");
         boolean removeuNome = nomes.remove(nomeEliminar);
 
-        JOptionPane.showMessageDialog(null, "Nome "+ (removeuNome?"":"não ") +"removido!!");
+        JOptionPane.showMessageDialog(null, "Nome " + (removeuNome ? "" : "não ") + "removido!!");
 
         String nomeVerificar = JOptionPane.showInputDialog("Escolha outro nome: ");
-        if (nomes.contains(nomeVerificar)){
-            JOptionPane.showMessageDialog(null,"OK, o nome existe na lista");
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"O nome não existe na lista");
-        }
+        if (nomes.contains(nomeVerificar)) {
+            JOptionPane.showMessageDialog(null, "OK, o nome existe na lista");
+        } else {
+            JOptionPane.showMessageDialog(null, "O nome não existe na lista");
         }
     }
+
+    public static void atividade05() {
+        ArrayList<Double> notas = new ArrayList<>();
+
+        while (true) {
+
+            String entrada = JOptionPane.showInputDialog("Informe a nota" + (notas.size()+1) + ": "");
+
+            if (entrada == null) {
+                if (notas.size() >= 2) {
+                    break;
+                }else {
+                    JOptionPane.showMessageDialog(null, "Informe pelo menos 2 notas.");
+                    continue;
+                }
+            }
+
+            double nota = Double.parseDouble(entrada);
+            notas.add(nota);
+        }
+
+        double maiorNota = notas.get(0);
+        double menorNota = notas.get(0);
+        double soma = 0;
+
+        ArrayList<Double> maioresQueSete = new ArrayList<>();
+
+        for (int i = 0; i < notas.size(); i++) {
+
+            double nota = notas.get(i);
+
+            soma += nota;
+
+            if (nota > maiorNota) {
+                maiorNota = nota;
+            }
+
+            if (nota < menorNota) {
+                menorNota = nota;
+            }
+
+            if (nota > 7) {
+                maioresQueSete.add(nota);
+            }
+        }
+
+        double mediaGeral = soma / notas.size();
+
+        JOptionPane.showMessageDialog(null, "Média geral: " + mediaGeral);
+        JOptionPane.showMessageDialog(null, "Maior nota: " + maiorNota);
+        JOptionPane.showMessageDialog(null, "Menor nota: " + menorNota);
+        JOptionPane.showMessageDialog(null, "Notas maiores que 7: " + maioresQueSete);
+    }
+}
