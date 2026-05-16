@@ -72,4 +72,49 @@ public class atividadeListas {
             }
         }
     }
-}
+
+    public static void atividade04() {
+        ArrayList<String> nomes = new ArrayList<>();
+
+        //Recebe pelo menos 5 nomes do usuario, até ele decidir parar.
+        while(true){
+            String entrada = JOptionPane.showInputDialog("Informe um nome: ");
+            if (entrada == null){
+                if(nomes.size()>=5){
+                    break;
+                }
+                else{
+                    int faltam = 5 - nomes.size();
+                    JOptionPane.showMessageDialog(null, "Ainda faltam "+faltam+" nomes.");
+                }
+            }
+            else {
+                nomes.add(entrada);
+            }
+
+        }
+        JOptionPane.showMessageDialog(null, "A lista tem " + nomes.size() + " nomes.");
+        JOptionPane.showMessageDialog(null,
+                "Primeiro nome: " + nomes.getFirst()+" \n" +
+                        "Ultimo nome: " + nomes.getLast());
+
+        String novoNome = JOptionPane.showInputDialog("Informe mais um nome para substituir " + nomes.get(2) + ": ");
+
+        if(nomes.size()<=3){
+            nomes.set(2, novoNome);
+        }
+
+        String nomeEliminar = JOptionPane.showInputDialog("Informe um nome para eliminar: ");
+        boolean removeuNome = nomes.remove(nomeEliminar);
+
+        JOptionPane.showMessageDialog(null, "Nome "+ (removeuNome?"":"não ") +"removido!!");
+
+        String nomeVerificar = JOptionPane.showInputDialog("Escolha outro nome: ");
+        if (nomes.contains(nomeVerificar)){
+            JOptionPane.showMessageDialog(null,"OK, o nome existe na lista");
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"O nome não existe na lista");
+        }
+        }
+    }
